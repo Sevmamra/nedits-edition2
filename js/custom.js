@@ -43,17 +43,23 @@ setInterval(changeHeroBackground, 4000);
 // ======================================
 
 window.addEventListener('load', () => {
-  const board = document.querySelector('.board-container');
-  const welcome = document.querySelector('.final-welcome-container');
+  const boardContainer = document.querySelector('.board-container');
+  const welcomeImg = document.querySelector('.welcome-img');
 
-  // Animate Board Drop
-  board.style.animation = 'dropBoard 4s ease forwards';
-
-  // After 4s, show welcome text permanently
   setTimeout(() => {
-    welcome.style.opacity = '1';
-    welcome.style.transform = 'translate(-50%, -50%) scale(1)';
+    // Remove board.png and fix welcome-text.png in hero section
+    boardContainer.style.display = 'none';
+
+    // Add welcome-text in hero separately to stick
+    const heroOverlay = document.querySelector('.hero-overlay');
+    const newWelcome = document.createElement('img');
+    newWelcome.src = 'images/welcome-text.png';
+    newWelcome.alt = 'Welcome';
+    newWelcome.className = 'stick-welcome';
+
+    heroOverlay.appendChild(newWelcome);
   }, 4000);
+});
 
   // Animate Testimonials on load
   animateTestimonials();
