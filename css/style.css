@@ -390,3 +390,48 @@ footer {
     flex-direction: column;
   }
 }
+
+/* ==========================================
+   Welcome Animation (Board + Welcome Text)
+========================================== */
+
+.welcome-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: transparent; /* Black karna ho to change kar sakta hai */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Board Image */
+.board-img {
+  width: 250px;
+  animation: boardDrop 2s forwards;
+}
+
+/* Welcome Text Image */
+.welcome-text-img {
+  width: 220px;
+  transform: translateY(-300px);
+  animation: welcomeDrop 2s forwards;
+}
+
+/* Animations */
+@keyframes boardDrop {
+  0% { transform: translateY(-300px); }
+  50% { transform: translateY(0); }
+  100% { transform: translateY(-300px); }
+}
+
+@keyframes welcomeDrop {
+  0% { transform: translateY(-300px); }
+  50% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
