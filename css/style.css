@@ -386,68 +386,85 @@ footer {
   }
 }
 
-/* ==============================
-   Welcome Initial Animation
-============================== */
+/* ============================
+   Welcome Board Animation
+============================ */
 
-.welcome-animation {
+.board-welcome-animation {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: transparent;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  background: transparent;
   z-index: 9999;
 }
 
-.board-container {
+.board-wrapper {
   position: relative;
-  margin-top: -300px; /* So it starts from above the viewport */
+  margin-top: -500px; /* Start from above viewport */
 }
 
-.board-img {
-  width: 350px; /* Increased size */
-  animation: boardDrop 2.5s forwards;
+.animated-board {
+  width: 180px; /* For 9:16 aspect ratio */
+  animation: boardMove 3s forwards;
 }
 
-.welcome-text-img {
-  width: 320px; /* Increased size */
+.animated-welcome {
+  width: 140px; /* For 1:1 aspect ratio */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) translateY(-500px);
-  animation: welcomeDrop 2.5s forwards;
+  animation: welcomeMove 3s forwards;
 }
 
-@keyframes boardDrop {
+/* Board Animation */
+@keyframes boardMove {
   0% { transform: translateY(-500px); opacity: 0; }
   50% { transform: translateY(0); opacity: 1; }
   100% { transform: translateY(-600px); opacity: 0; }
 }
 
-@keyframes welcomeDrop {
+/* Welcome Text Animation */
+@keyframes welcomeMove {
   0% { transform: translate(-50%, -50%) translateY(-500px); opacity: 0; }
   50% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
   100% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
 }
 
-/* ==============================
-   Permanent Welcome in Hero
-============================== */
+/* ============================
+   Final Welcome in Hero
+============================ */
 
-.welcome-permanent {
+.final-welcome-holder {
   position: relative;
-  width: 320px;
-  margin: 0 auto 30px auto;
+  width: 140px;
+  margin: 0 auto 20px auto;
   display: none; /* Pehle hidden rahega */
 }
 
 .final-welcome-img {
-  width: 320px;
+  width: 140px;
   display: block;
   margin: 0 auto;
 }
 
+/* ============================
+   Hero Background Overlay (Black Tint)
+============================ */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+}
