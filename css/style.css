@@ -98,7 +98,9 @@ header {
   height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 70px;
 }
 
 .hero-overlay {
@@ -130,55 +132,29 @@ header {
 }
 
 .hero-welcome {
-  width: 250px;
+  width: 290px;
   aspect-ratio: 1/1;
-  margin-top: -270px;
+  margin-top: -260px;
 }
 
 @keyframes dropBoth {
-  0% {
-    top: -600px;
-    opacity: 0;
-  }
-  60% {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-  80% {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-  100% {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
+  0% { top: -600px; opacity: 0; }
+  60% { top: 50%; opacity: 1; transform: translate(-50%, -50%); }
+  80% { top: 50%; opacity: 1; transform: translate(-50%, -50%); }
+  100% { top: 50%; opacity: 1; transform: translate(-50%, -50%); }
 }
 
-/* Board exit */
 .hero-board {
   animation: boardExit 3s ease forwards;
 }
 
 @keyframes boardExit {
-  0% {
-    opacity: 1;
-  }
-  60% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    top: -600px;
-    opacity: 0;
-  }
+  0% { opacity: 1; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: -600px; opacity: 0; }
 }
 
-/* Explore button */
 .explore-btn {
   background: red;
   color: white;
@@ -187,17 +163,9 @@ header {
   font-weight: 600;
   font-size: 22px;
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
-  display: inline-block;
-  position: relative;
   z-index: 2;
   animation: float 2s infinite ease-in-out;
-  margin-top: 350px;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
+  position: relative;
 }
 
 /* ===========================
