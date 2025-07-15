@@ -93,5 +93,5 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     welcomeAnimation.style.display = 'none';
     permanentWelcome.style.display = 'block';
-  }, 2000);
+  }, 2500);
 });
