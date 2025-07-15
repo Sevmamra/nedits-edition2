@@ -87,11 +87,11 @@ window.addEventListener('load', () => {
 
 // Welcome Animation Logic
 window.addEventListener('load', () => {
-  const welcomeAnimation = document.querySelector('.welcome-animation');
-  const permanentWelcome = document.querySelector('.welcome-permanent');
+  const boardAnimation = document.querySelector('.board-welcome-animation');
+  const finalWelcome = document.querySelector('.final-welcome-holder');
 
   setTimeout(() => {
-    welcomeAnimation.style.display = 'none';
-    permanentWelcome.style.display = 'block';
-  }, 2500);
+    boardAnimation.style.display = 'none';
+    finalWelcome.style.display = 'block';
+  }, 3000); // Matches animation timing
 });
