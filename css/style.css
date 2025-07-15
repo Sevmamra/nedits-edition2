@@ -134,9 +134,10 @@ header {
 }
 
 .hero-welcome {
-  width: 280px;
+  width: 250px;
   aspect-ratio: 1 / 1;
   animation: dropWelcome 2.5s ease forwards;
+  margin-top: -250px;
 }
 
 @keyframes dropBoard {
@@ -160,7 +161,7 @@ header {
   font-size: 22px;
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
   display: inline-block;
-  margin-top: 60px;
+  margin-top: 320px;
   position: relative;
   z-index: 2;
   animation: float 2s infinite ease-in-out;
