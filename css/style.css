@@ -391,11 +391,10 @@ footer {
   }
 }
 
-/* ==========================================
-   Welcome Animation (Board + Welcome Text)
-========================================== */
+/* ==============================
+   Welcome Initial Animation
+============================== */
 
-/* Initial Animation Container */
 .welcome-animation {
   position: fixed;
   top: 0;
@@ -409,7 +408,6 @@ footer {
   z-index: 9999;
 }
 
-/* Board + Welcome (Animated) */
 .board-container {
   position: relative;
 }
@@ -428,7 +426,6 @@ footer {
   animation: welcomeDrop 2s forwards;
 }
 
-/* Animation Keyframes */
 @keyframes boardDrop {
   0% { transform: translateY(-300px); }
   50% { transform: translateY(0); }
@@ -441,13 +438,15 @@ footer {
   100% { transform: translate(-50%, -50%) translateY(0); }
 }
 
-/* Permanent Welcome (Normal content position) */
+/* ==============================
+   Permanent Welcome in Hero
+============================== */
+
 .welcome-permanent {
-  width: 100%;
-  text-align: center;
-  margin-top: 100px; /* adjust for position */
   position: relative;
-  display: none; /* pehle hidden rahega */
+  width: 250px;
+  margin: 0 auto 30px auto; /* Center with bottom space */
+  display: none; /* Pehle hidden rahega */
 }
 
 .final-board-img {
