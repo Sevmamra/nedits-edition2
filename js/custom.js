@@ -3,8 +3,6 @@
 // =============================
 
 const hero = document.querySelector('.hero');
-const heroOverlay = document.querySelector('.hero-overlay');
-
 let bgImages = [];
 const totalImages = 50;
 
