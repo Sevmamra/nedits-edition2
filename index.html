@@ -16,11 +16,10 @@
 </head>
 
 <!-- Welcome Animation Overlay (Initial Drop Animation) -->
-<div class="board-welcome-animation">
-  <div class="board-wrapper">
-    <img src="images/board.png" alt="Board" class="animated-board">
-    <img src="images/welcome-text.png" alt="Welcome Text" class="animated-welcome">
-  </div>
+
+<div class="welcome-animation-container">
+  <img src="images/board.png" alt="Board" class="board-img">
+  <img src="images/welcome-text.png" alt="Welcome Text" class="welcome-text-img">
 </div>
 
 <body>
@@ -44,15 +43,15 @@
   </nav>
 
   <!-- Hero Section -->
-<section class="hero" id="home">
-  <div class="hero-overlay">
-    <div class="final-welcome-holder">
-      <img src="images/welcome-text.png" alt="Welcome" class="final-welcome-img">
-    </div>
-
-    <a href="#services" class="btn explore-btn">Explore Services</a>
+<div class="hero-overlay">
+  <!-- Welcome Text Fixed Center -->
+  <div class="final-welcome-container">
+    <img src="images/welcome-text.png" alt="Welcome" class="final-welcome-img">
   </div>
-</section>
+
+  <!-- Explore Button as it is -->
+  <a href="#services" class="btn explore-btn">Explore Services</a>
+</div>
 
   <!-- Services Section -->
   <section class="section" id="services">
