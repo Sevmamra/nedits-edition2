@@ -1,121 +1,98 @@
-// AOS Initialize (only for sections where needed)
-AOS.init({
-  disable: 'mobile'
-});
+// =============================
+// HERO BACKGROUND SLIDESHOW
+// =============================
 
-// ======================================
-// Hero Section Random Slideshow
-// ======================================
+const hero = document.querySelector('.hero');
+const heroOverlay = document.querySelector('.hero-overlay');
 
-const heroSection = document.querySelector('.hero');
-const heroImages = [
-  'images/hero-bg/hero-bg1.jpg',
-  'images/hero-bg/hero-bg2.jpg',
-  'images/hero-bg/hero-bg3.jpg',
-  'images/hero-bg/hero-bg4.jpg',
-  'images/hero-bg/hero-bg5.jpg',
-  'images/hero-bg/hero-bg6.jpg',
-  'images/hero-bg/hero-bg7.jpg',
-  'images/hero-bg/hero-bg8.jpg'
-  // Add as many as you upload
-];
+let bgImages = [];
+const totalImages = 50;
 
-let previousIndex = -1;
+for (let i = 1; i <= totalImages; i++) {
+  bgImages.push(`images/hero-bg/hero-bg${i}.jpg`);
+}
 
-function getRandomImage() {
-  let index;
+let usedIndexes = [];
+
+function getRandomIndex() {
+  if (usedIndexes.length === bgImages.length) usedIndexes = [];
+  let idx;
   do {
-    index = Math.floor(Math.random() * heroImages.length);
-  } while (index === previousIndex);
-  previousIndex = index;
-  return heroImages[index];
+    idx = Math.floor(Math.random() * bgImages.length);
+  } while (usedIndexes.includes(idx));
+  usedIndexes.push(idx);
+  return idx;
 }
 
 function changeHeroBackground() {
-  const newBg = getRandomImage();
-  heroSection.style.backgroundImage = `url('${newBg}')`;
+  const index = getRandomIndex();
+  hero.style.backgroundImage = `url('${bgImages[index]}')`;
 }
 
-setInterval(changeHeroBackground, 4000);
+setInterval(changeHeroBackground, 3000);
 
-// ======================================
-// Welcome Board & Text Animation
-// ======================================
+// =============================
+// HERO BOARD & WELCOME ANIMATION
+// =============================
 
 window.addEventListener('load', () => {
-  const boardContainer = document.querySelector('.board-container');
-  const welcomeImg = document.querySelector('.welcome-img');
+  const board = document.querySelector('.hero-board');
+  const welcome = document.querySelector('.hero-welcome');
 
-  setTimeout(() => {
-    // Remove board.png and fix welcome-text.png in hero section
-    boardContainer.style.display = 'none';
-
-    // Add welcome-text in hero separately to stick
-    const heroOverlay = document.querySelector('.hero-overlay');
-    const newWelcome = document.createElement('img');
-    newWelcome.src = 'images/welcome-text.png';
-    newWelcome.alt = 'Welcome';
-    newWelcome.className = 'stick-welcome';
-
-    heroOverlay.appendChild(newWelcome);
-  }, 4000);
+  // Trigger board & welcome animation by adding the class via CSS animation (already applied)
+  // No extra JS needed as animation handled via CSS
 });
 
-  // Animate Testimonials on load
-  animateTestimonials();
-});
+// =============================
+// EXPLORE BUTTON FLOAT
+// =============================
 
-// ======================================
-// Explore Button (Bouncing is only its own animation, no interference)
-// ======================================
-// Already handled by CSS @keyframes bounce
+const exploreBtn = document.querySelector('.explore-btn');
+exploreBtn.style.animation = "float 2s infinite ease-in-out";
 
-// ======================================
-// Services Card Border Rotate + Icon Tilt
-// ======================================
+// =============================
+// SERVICES CARD ACTIVE EFFECT
+// =============================
 
 const serviceCards = document.querySelectorAll('.service-card');
 
 serviceCards.forEach(card => {
   card.addEventListener('click', () => {
-    card.classList.toggle('active');
-    card.classList.toggle('tilt');
+    serviceCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
   });
 });
 
-// ======================================
-// About Section Typing Effect
-// ======================================
+// =============================
+// ABOUT TYPEWRITER EFFECT
+// =============================
 
 const aboutText = document.getElementById('about-text');
-const fullText = aboutText.textContent;
+const fullAbout = aboutText.textContent;
 aboutText.textContent = '';
-let idx = 0;
+
+let aboutIndex = 0;
 
 function typeWriter() {
-  if (idx < fullText.length) {
-    aboutText.textContent += fullText.charAt(idx);
-    idx++;
+  if (aboutIndex < fullAbout.length) {
+    aboutText.textContent += fullAbout.charAt(aboutIndex);
+    aboutIndex++;
     setTimeout(typeWriter, 30);
   }
 }
 
+window.addEventListener('load', typeWriter);
+
+// =============================
+// TESTIMONIALS ANIMATION
+// =============================
+
 window.addEventListener('load', () => {
-  setTimeout(typeWriter, 500);
-});
-
-// ======================================
-// Testimonials Alternate Animation
-// ======================================
-
-function animateTestimonials() {
-  const testimonials = document.querySelectorAll('.testimonial');
-  
-  testimonials.forEach((el, index) => {
-    if (index % 2 === 0) {
-      el.classList.add('testimonial-left');
-    } else {
-      el.classList.add('testimonial-right');
-    }
+  const testimonials = document.querySelectorAll('.testimonial-card');
+  testimonials.forEach((card, index) => {
+    setTimeout(() => {
+      card.style.animationDelay = `${index * 0.3}s`;
+      card.classList.add(index % 2 === 0 ? 'left' : 'right');
+    }, index * 200);
   });
-}
+});
