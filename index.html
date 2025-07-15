@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nedits Edition</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <img src="images/logo.png" alt="NEDITS Logo" class="logo"/>
+      <img src="images/header-title.png" alt="NEDITS Edition" class="header-title-img"/>
+    </div>
+    <p class="tagline">Your Creative Digital Partner</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <img src="images/hero-title.png" alt="Welcome to NEDITS Edition" class="hero-title-img"/>
+    <a href="#services" class="btn explore-btn">Explore Services</a>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="images/icon-graphic.png" alt="Graphic Designing" class="service-icon"/>
+        <h3>Graphic Designing</h3>
+        <p>Posters, social media creatives, brand kits & more with a modern, creative touch.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/icon-video.png" alt="Video Editing" class="service-icon"/>
+        <h3>Video Editing</h3>
+        <p>Premium edits for YouTube, Instagram reels, promotional videos and ads.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/icon-web.png" alt="Website Development" class="service-icon"/>
+        <h3>Website Development</h3>
+        <p>Clean, responsive, SEO‑friendly websites for personal brands & businesses.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/icon-social.png" alt="Social Media Management" class="service-icon"/>
+        <h3>Social Media Management</h3>
+        <p>Boost your online presence with expert growth strategies and content plans.</p>
+      </div>
+      <div class="service-card">
+        <img src="images/icon-brand.png" alt="Brand Identity Creation" class="service-icon"/>
+        <h3>Brand Identity Creation</h3>
+        <p>Logo designing, color palette planning & complete brand identity setup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="section" id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-box">
+      <p id="about-text">
+        Nedits Edition is a creative brand based in India, helping content creators, influencers, startups and businesses enhance their digital presence. We specialize in high-quality visuals, engaging content and brand-focused strategies that make a difference.
+      </p>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section" id="testimonials">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="testimonial-container">
+      <div class="testimonial-card left">
+        <p>"Nedits Edition transformed my brand's Instagram game with stunning designs and timely deliveries!"</p>
+        <span>- Priya S., Social Media Influencer</span>
+      </div>
+      <div class="testimonial-card right">
+        <p>"Excellent website development service. Clean, responsive, and exactly as promised."</p>
+        <span>- Akash R., Startup Founder</span>
+      </div>
+      <div class="testimonial-card left">
+        <p>"Super professional video editing for my YouTube channel. Gained huge audience engagement!"</p>
+        <span>- Manav T., YouTube Creator</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-form">
+      <form action="https://docs.google.com/forms/d/e/dummy-form-link/formResponse" method="POST" target="_blank">
+        <input type="text" placeholder="Your Name" required/>
+        <input type="email" placeholder="Your Email" required/>
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit" class="btn contact-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="social-icons">
+      <a href="#" target="_blank">Instagram</a> |
+      <a href="#" target="_blank">Facebook</a> |
+      <a href="#" target="_blank">YouTube</a>
+    </div>
+    <p>&copy; 2025 NEDITS Edition. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Sticky Navbar Fix
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.add('sticky');
+    });
+
+    // Hero Background Random Slideshow
+    const heroSection = document.querySelector('.hero');
+    const heroOverlay = document.querySelector('.hero-overlay');
+    const bgImages = [];
+    const totalImages = 10; // Change this to your number of images
+
+    for (let i = 1; i <= totalImages; i++) {
+      bgImages.push(`images/hero-bg/hero-bg${i}.jpg`);
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    let currentSequence = [...bgImages];
+    shuffleArray(currentSequence);
+    let currentIndex = 0;
+
+    function changeHeroBg() {
+      heroSection.style.backgroundImage = `url('${currentSequence[currentIndex]}')`;
+      currentIndex++;
+      if (currentIndex >= currentSequence.length) {
+        shuffleArray(currentSequence);
+        currentIndex = 0;
+      }
+    }
+
+    setInterval(changeHeroBg, 3000);
+
+    // Explore Button Animation
+    const exploreBtn = document.querySelector('.explore-btn');
+    exploreBtn.style.animation = "float 2s infinite ease-in-out";
+
+    // About Typing Animation
+    const aboutText = document.getElementById('about-text');
+    const fullText = aboutText.textContent;
+    aboutText.textContent = '';
+    let idx = 0;
+    function typeWriter() {
+      if (idx < fullText.length) {
+        aboutText.textContent += fullText.charAt(idx);
+        idx++;
+        setTimeout(typeWriter, 30);
+      }
+    }
+    window.addEventListener('load', typeWriter);
+
+    // Services Card Effects
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+
+  </script>
+
+</body>
+</html>
