@@ -85,11 +85,14 @@ window.addEventListener('load', () => {
 
 // ============== Welcome Animation ==============
 
+// Welcome Animation Logic
 window.addEventListener('load', () => {
-  const welcomeText = document.querySelector('.welcome-text-img');
+  const welcomeAnimation = document.querySelector('.welcome-animation');
+  const permanentWelcome = document.querySelector('.welcome-permanent');
 
-  // Welcome text ka animation start
-  welcomeText.style.animation = 'welcomeDrop 2s forwards';
-
-  // Board ka animation CSS se already chalu hoga
+  // Wait for animation to finish
+  setTimeout(() => {
+    welcomeAnimation.style.display = 'none';
+    permanentWelcome.style.display = 'block';
+  }, 2000);
 });
