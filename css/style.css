@@ -390,69 +390,58 @@ footer {
    Welcome Board Animation
 ============================ */
 
-.board-welcome-animation {
+.welcome-animation-container {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: transparent;
-  z-index: 9999;
-}
-
-.board-wrapper {
-  position: relative;
-  margin-top: -500px; /* Start from above viewport */
-}
-
-.animated-board {
-  width: 180px; /* For 9:16 aspect ratio */
-  animation: boardMove 3s forwards;
-}
-
-.animated-welcome {
-  width: 140px; /* For 1:1 aspect ratio */
-  position: absolute;
-  top: 50%;
+  top: -100%; /* Start from above screen */
   left: 50%;
-  transform: translate(-50%, -50%) translateY(-500px);
-  animation: welcomeMove 3s forwards;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999;
+  animation: dropDownBoard 3s forwards;
+}
+
+.board-img {
+  width: 180px; /* Adjust for 9:16 aspect */
+}
+
+.welcome-text-img {
+  width: 140px; /* Adjust for 1:1 aspect */
+  margin-top: -140px; /* To overlap on board */
 }
 
 /* Board Animation */
-@keyframes boardMove {
-  0% { transform: translateY(-500px); opacity: 0; }
-  50% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-600px); opacity: 0; }
-}
-
-/* Welcome Text Animation */
-@keyframes welcomeMove {
-  0% { transform: translate(-50%, -50%) translateY(-500px); opacity: 0; }
-  50% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
-  100% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+@keyframes dropDownBoard {
+  0% { top: -100%; }
+  30% { top: 35%; }
+  50% { top: 40%; }
+  70% { top: 35%; }
+  80% { top: -100%; } /* Board goes back up */
+  100% { top: -100%; }
 }
 
 /* ============================
-   Final Welcome in Hero
+   Final Welcome Text in Hero
 ============================ */
 
-.final-welcome-holder {
-  position: relative;
+.final-welcome-container {
   width: 140px;
-  margin: 0 auto 20px auto;
-  display: none; /* Pehle hidden rahega */
+  position: absolute; /* FIX */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 3; /* Ensure it's on top */
 }
 
 .final-welcome-img {
   width: 140px;
   display: block;
-  margin: 0 auto;
 }
 
 /* ============================
-   Hero Background Overlay (Black Tint)
+   Hero Background Overlay
 ============================ */
 
 .hero::before {
@@ -467,4 +456,17 @@ footer {
 .hero-overlay {
   position: relative;
   z-index: 2;
+}
+
+/* ============================
+   Explore Button Animation
+============================ */
+
+.explore-btn {
+  animation: bounceExplore 2s infinite;
+}
+
+@keyframes bounceExplore {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
 }
