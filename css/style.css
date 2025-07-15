@@ -113,6 +113,66 @@ nav a:hover {
 }
 
 /* Welcome Animation */
+
+/* Welcome Animation */
+.welcome-animation {
+  position: absolute;
+  top: -500px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px; /* Initial width, will scale on bigger screens */
+  animation: boardDrop 4s ease forwards;
+  z-index: 5;
+}
+
+.welcome-animation img {
+  display: block;
+  width: 100%;
+}
+
+.board-img {
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-img {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  z-index: 2;
+}
+
+/* Stop board in center and make welcome permanent */
+.stick-welcome {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Board Drop Animation */
+@keyframes boardDrop {
+  0% { top: -500px; }
+  60% { top: 45%; }
+  80% { top: 45%; }
+  100% { top: -500px; }
+}
+
+/* Make board bigger on large screens */
+@media (min-width: 768px) {
+  .welcome-animation {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .welcome-animation {
+    width: 350px;
+  }
+}
+
 .board-container {
   position: absolute;
   top: -200px;
