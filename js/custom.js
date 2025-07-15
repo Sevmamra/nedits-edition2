@@ -90,7 +90,6 @@ window.addEventListener('load', () => {
   const welcomeAnimation = document.querySelector('.welcome-animation');
   const permanentWelcome = document.querySelector('.welcome-permanent');
 
-  // Wait for animation to finish
   setTimeout(() => {
     welcomeAnimation.style.display = 'none';
     permanentWelcome.style.display = 'block';
