@@ -115,24 +115,19 @@ nav a:hover {
 /* Welcome Animation */
 
 /* Welcome Animation */
-.welcome-animation {
+/* Welcome Animation */
+.board-container {
   position: absolute;
-  top: -500px;
+  top: -100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px; /* Initial width, will scale on bigger screens */
-  animation: boardDrop 4s ease forwards;
+  width: 300px;
   z-index: 5;
-}
-
-.welcome-animation img {
-  display: block;
-  width: 100%;
+  animation: dropBoard 4s ease forwards;
 }
 
 .board-img {
-  position: relative;
-  z-index: 1;
+  width: 100%;
 }
 
 .welcome-img {
@@ -144,32 +139,40 @@ nav a:hover {
   z-index: 2;
 }
 
-/* Stop board in center and make welcome permanent */
+/* Stick the welcome text after board leaves */
 .stick-welcome {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 300px;
+  z-index: 6;
 }
 
-/* Board Drop Animation */
-@keyframes boardDrop {
-  0% { top: -500px; }
-  60% { top: 45%; }
-  80% { top: 45%; }
-  100% { top: -500px; }
+/* Drop Animation for Board */
+@keyframes dropBoard {
+  0% { top: -100%; }
+  50% { top: 45%; }
+  75% { top: 45%; }
+  100% { top: -100%; }
 }
 
-/* Make board bigger on large screens */
+/* Responsive Bigger Sizes */
 @media (min-width: 768px) {
-  .welcome-animation {
-    width: 280px;
+  .board-container {
+    width: 400px;
+  }
+  .stick-welcome {
+    width: 400px;
   }
 }
 
 @media (min-width: 1200px) {
-  .welcome-animation {
-    width: 350px;
+  .board-container {
+    width: 500px;
+  }
+  .stick-welcome {
+    width: 500px;
   }
 }
 
