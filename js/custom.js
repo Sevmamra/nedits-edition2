@@ -1,97 +1,115 @@
-// ============== HERO BACKGROUND RANDOM SLIDESHOW ==============
+// AOS Initialize (only for sections where needed)
+AOS.init({
+  disable: 'mobile'
+});
 
-const hero = document.querySelector('.hero');
-const heroOverlay = document.querySelector('.hero-overlay');
-const exploreBtn = document.querySelector('.explore-btn');
+// ======================================
+// Hero Section Random Slideshow
+// ======================================
 
-let bgImages = [];
-const totalImages = 50; // Change this to your total images count
+const heroSection = document.querySelector('.hero');
+const heroImages = [
+  'images/hero-bg/hero-bg1.jpg',
+  'images/hero-bg/hero-bg2.jpg',
+  'images/hero-bg/hero-bg3.jpg',
+  'images/hero-bg/hero-bg4.jpg',
+  'images/hero-bg/hero-bg5.jpg',
+  'images/hero-bg/hero-bg6.jpg',
+  'images/hero-bg/hero-bg7.jpg',
+  'images/hero-bg/hero-bg8.jpg'
+  // Add as many as you upload
+];
 
-for (let i = 1; i <= totalImages; i++) {
-  bgImages.push(`images/hero-bg/hero-bg${i}.jpg`);
-}
+let previousIndex = -1;
 
-let usedIndexes = [];
-
-function getRandomIndex() {
-  if (usedIndexes.length === bgImages.length) {
-    usedIndexes = [];
-  }
-
-  let idx;
+function getRandomImage() {
+  let index;
   do {
-    idx = Math.floor(Math.random() * bgImages.length);
-  } while (usedIndexes.includes(idx));
-
-  usedIndexes.push(idx);
-  return idx;
+    index = Math.floor(Math.random() * heroImages.length);
+  } while (index === previousIndex);
+  previousIndex = index;
+  return heroImages[index];
 }
 
 function changeHeroBackground() {
-  const index = getRandomIndex();
-  hero.style.backgroundImage = `url('${bgImages[index]}')`;
+  const newBg = getRandomImage();
+  heroSection.style.backgroundImage = `url('${newBg}')`;
 }
 
-setInterval(changeHeroBackground, 3000);
+setInterval(changeHeroBackground, 4000);
 
-// ============== EXPLORE BUTTON FLOATING ANIMATION ==============
+// ======================================
+// Welcome Board & Text Animation
+// ======================================
 
-exploreBtn.style.animation = "float 2s infinite ease-in-out";
+window.addEventListener('load', () => {
+  const board = document.querySelector('.board-container');
+  const welcome = document.querySelector('.final-welcome-container');
 
-// ============== SERVICES CARD INTERACTION ==============
+  // Animate Board Drop
+  board.style.animation = 'dropBoard 4s ease forwards';
+
+  // After 4s, show welcome text permanently
+  setTimeout(() => {
+    welcome.style.opacity = '1';
+    welcome.style.transform = 'translate(-50%, -50%) scale(1)';
+  }, 4000);
+
+  // Animate Testimonials on load
+  animateTestimonials();
+});
+
+// ======================================
+// Explore Button (Bouncing is only its own animation, no interference)
+// ======================================
+// Already handled by CSS @keyframes bounce
+
+// ======================================
+// Services Card Border Rotate + Icon Tilt
+// ======================================
 
 const serviceCards = document.querySelectorAll('.service-card');
 
 serviceCards.forEach(card => {
   card.addEventListener('click', () => {
-    // Remove active from all
-    serviceCards.forEach(c => {
-      c.classList.remove('active');
-    });
-    // Add active to clicked
-    card.classList.add('active');
+    card.classList.toggle('active');
+    card.classList.toggle('tilt');
   });
 });
 
-// ============== ABOUT SECTION TYPEWRITER ==============
+// ======================================
+// About Section Typing Effect
+// ======================================
 
 const aboutText = document.getElementById('about-text');
-const fullAbout = aboutText.textContent;
+const fullText = aboutText.textContent;
 aboutText.textContent = '';
-
-let aboutIndex = 0;
+let idx = 0;
 
 function typeWriter() {
-  if (aboutIndex < fullAbout.length) {
-    aboutText.textContent += fullAbout.charAt(aboutIndex);
-    aboutIndex++;
+  if (idx < fullText.length) {
+    aboutText.textContent += fullText.charAt(idx);
+    idx++;
     setTimeout(typeWriter, 30);
   }
 }
 
-window.addEventListener('load', typeWriter);
-
-// ============== TESTIMONIALS ANIMATION ==============
-
 window.addEventListener('load', () => {
-  const testimonials = document.querySelectorAll('.testimonial-card');
-  testimonials.forEach((card, index) => {
-    setTimeout(() => {
-      card.style.animationDelay = `${index * 0.3}s`;
-      card.classList.add(index % 2 === 0 ? 'left' : 'right');
-    }, index * 200);
+  setTimeout(typeWriter, 500);
+});
+
+// ======================================
+// Testimonials Alternate Animation
+// ======================================
+
+function animateTestimonials() {
+  const testimonials = document.querySelectorAll('.testimonial');
+  
+  testimonials.forEach((el, index) => {
+    if (index % 2 === 0) {
+      el.classList.add('testimonial-left');
+    } else {
+      el.classList.add('testimonial-right');
+    }
   });
-});
-
-// ============== Welcome Animation ==============
-
-// Welcome Animation Logic
-window.addEventListener('load', () => {
-  const welcomeAnim = document.querySelector('.welcome-animation-container');
-  const finalWelcome = document.querySelector('.final-welcome-container');
-
-  setTimeout(() => {
-    welcomeAnim.style.display = 'none';
-    finalWelcome.style.display = 'block';
-  }, 3000); // Animation time matches CSS
-});
+}
