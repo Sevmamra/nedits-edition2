@@ -82,3 +82,14 @@ window.addEventListener('load', () => {
     }, index * 200);
   });
 });
+
+// ============== Welcome Animation ==============
+
+window.addEventListener('load', () => {
+  const welcomeText = document.querySelector('.welcome-text-img');
+
+  // Welcome text ka animation start
+  welcomeText.style.animation = 'welcomeDrop 2s forwards';
+
+  // Board ka animation CSS se already chalu hoga
+});
