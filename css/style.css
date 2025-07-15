@@ -395,35 +395,40 @@ footer {
    Welcome Animation (Board + Welcome Text)
 ========================================== */
 
+/* Initial Animation Container */
 .welcome-animation {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: transparent; /* Black karna ho to change kar sakta hai */
+  background: transparent;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   z-index: 9999;
-  overflow: hidden;
 }
 
-/* Board Image */
+/* Board + Welcome (Animated) */
+.board-container {
+  position: relative;
+}
+
 .board-img {
   width: 250px;
   animation: boardDrop 2s forwards;
 }
 
-/* Welcome Text Image */
 .welcome-text-img {
   width: 220px;
-  transform: translateY(-300px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(-300px);
   animation: welcomeDrop 2s forwards;
 }
 
-/* Animations */
+/* Animation Keyframes */
 @keyframes boardDrop {
   0% { transform: translateY(-300px); }
   50% { transform: translateY(0); }
@@ -431,7 +436,28 @@ footer {
 }
 
 @keyframes welcomeDrop {
-  0% { transform: translateY(-300px); }
-  50% { transform: translateY(0); }
-  100% { transform: translateY(0); }
+  0% { transform: translate(-50%, -50%) translateY(-300px); }
+  50% { transform: translate(-50%, -50%) translateY(0); }
+  100% { transform: translate(-50%, -50%) translateY(0); }
+}
+
+/* Permanent Welcome (Normal content position) */
+.welcome-permanent {
+  width: 100%;
+  text-align: center;
+  margin-top: 100px; /* adjust for position */
+  position: relative;
+  display: none; /* pehle hidden rahega */
+}
+
+.final-board-img {
+  width: 250px;
+}
+
+.final-welcome-img {
+  width: 220px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
