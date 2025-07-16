@@ -5,7 +5,7 @@ const heroOverlay = document.querySelector('.hero-overlay');
 const exploreBtn = document.querySelector('.explore-btn');
 
 let bgImages = [];
-const totalImages = 50; // Change this to your total images count
+const totalImages = 3; // Change this to your total images count
 
 for (let i = 1; i <= totalImages; i++) {
   bgImages.push(`images/hero-bg/hero-bg${i}.jpg`);
