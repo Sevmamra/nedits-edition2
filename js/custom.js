@@ -1,10 +1,11 @@
-// =============================
-// HERO BACKGROUND SLIDESHOW
-// =============================
+// ============== HERO BACKGROUND RANDOM SLIDESHOW ==============
 
 const hero = document.querySelector('.hero');
+const heroOverlay = document.querySelector('.hero-overlay');
+const exploreBtn = document.querySelector('.explore-btn');
+
 let bgImages = [];
-const totalImages = 50;
+const totalImages = 50; // Change this to your total images count
 
 for (let i = 1; i <= totalImages; i++) {
   bgImages.push(`images/hero-bg/hero-bg${i}.jpg`);
@@ -13,11 +14,15 @@ for (let i = 1; i <= totalImages; i++) {
 let usedIndexes = [];
 
 function getRandomIndex() {
-  if (usedIndexes.length === bgImages.length) usedIndexes = [];
+  if (usedIndexes.length === bgImages.length) {
+    usedIndexes = [];
+  }
+
   let idx;
   do {
     idx = Math.floor(Math.random() * bgImages.length);
   } while (usedIndexes.includes(idx));
+
   usedIndexes.push(idx);
   return idx;
 }
@@ -29,41 +34,26 @@ function changeHeroBackground() {
 
 setInterval(changeHeroBackground, 3000);
 
-// =============================
-// HERO BOARD & WELCOME ANIMATION
-// =============================
+// ============== EXPLORE BUTTON FLOATING ANIMATION ==============
 
-window.addEventListener('load', () => {
-  const board = document.querySelector('.hero-board');
-  const welcome = document.querySelector('.hero-welcome');
-
-  // Trigger board & welcome animation by adding the class via CSS animation (already applied)
-  // No extra JS needed as animation handled via CSS
-});
-
-// =============================
-// EXPLORE BUTTON FLOAT
-// =============================
-
-const exploreBtn = document.querySelector('.explore-btn');
 exploreBtn.style.animation = "float 2s infinite ease-in-out";
 
-// =============================
-// SERVICES CARD ACTIVE EFFECT
-// =============================
+// ============== SERVICES CARD INTERACTION ==============
 
 const serviceCards = document.querySelectorAll('.service-card');
 
 serviceCards.forEach(card => {
   card.addEventListener('click', () => {
-    serviceCards.forEach(c => c.classList.remove('active'));
+    // Remove active from all
+    serviceCards.forEach(c => {
+      c.classList.remove('active');
+    });
+    // Add active to clicked
     card.classList.add('active');
   });
 });
 
-// =============================
-// ABOUT TYPEWRITER EFFECT
-// =============================
+// ============== ABOUT SECTION TYPEWRITER ==============
 
 const aboutText = document.getElementById('about-text');
 const fullAbout = aboutText.textContent;
@@ -81,9 +71,7 @@ function typeWriter() {
 
 window.addEventListener('load', typeWriter);
 
-// =============================
-// TESTIMONIALS ANIMATION
-// =============================
+// ============== TESTIMONIALS ANIMATION ==============
 
 window.addEventListener('load', () => {
   const testimonials = document.querySelectorAll('.testimonial-card');
