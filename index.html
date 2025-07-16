@@ -36,17 +36,11 @@
   </nav>
 
   <!-- Hero Section -->
-<section class="hero" id="home">
-  <div class="hero-overlay"></div>
-
-  <!-- Board & Welcome Text group -->
-  <div class="hero-animation-group">
-    <img src="images/board.png" alt="Board" class="hero-board" />
-    <img src="images/welcome-text.png" alt="Welcome Text" class="hero-welcome" />
-  </div>
-
-  <a href="#services" class="btn explore-btn">Explore Services</a>
-</section>
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <img src="images/hero-title.png" alt="Welcome to NEDITS Edition" class="hero-title-img"/>
+    <a href="#services" class="btn explore-btn">Explore Services</a>
+  </section>
 
   <!-- Services Section -->
   <section class="section" id="services">
@@ -114,9 +108,9 @@
     <h2 class="section-title">Contact Us</h2>
     <div class="contact-form">
       <form action="https://docs.google.com/forms/d/e/dummy-form-link/formResponse" method="POST" target="_blank">
-        <input type="text" placeholder="Your Name" name="entry.123" required/>
-        <input type="email" placeholder="Your Email" name="entry.124" required/>
-        <textarea rows="5" placeholder="Your Message" name="entry.125"></textarea>
+        <input type="text" placeholder="Your Name" required/>
+        <input type="email" placeholder="Your Email" required/>
+        <textarea rows="5" placeholder="Your Message"></textarea>
         <button type="submit" class="btn contact-btn">Send Message</button>
       </form>
     </div>
@@ -137,8 +131,73 @@
     <p>&copy; 2025 NEDITS Edition. All rights reserved.</p>
   </footer>
 
-  <!-- Custom Scripts -->
-  <script src="js/custom.js"></script>
+  <!-- Scripts -->
+  <script>
+    // Sticky Navbar Fix
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.add('sticky');
+    });
+
+    // Hero Background Random Slideshow
+    const heroSection = document.querySelector('.hero');
+    const heroOverlay = document.querySelector('.hero-overlay');
+    const bgImages = [];
+    const totalImages = 10; // Change this to your number of images
+
+    for (let i = 1; i <= totalImages; i++) {
+      bgImages.push(`images/hero-bg/hero-bg${i}.jpg`);
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    let currentSequence = [...bgImages];
+    shuffleArray(currentSequence);
+    let currentIndex = 0;
+
+    function changeHeroBg() {
+      heroSection.style.backgroundImage = `url('${currentSequence[currentIndex]}')`;
+      currentIndex++;
+      if (currentIndex >= currentSequence.length) {
+        shuffleArray(currentSequence);
+        currentIndex = 0;
+      }
+    }
+
+    setInterval(changeHeroBg, 3000);
+
+    // Explore Button Animation
+    const exploreBtn = document.querySelector('.explore-btn');
+    exploreBtn.style.animation = "float 2s infinite ease-in-out";
+
+    // About Typing Animation
+    const aboutText = document.getElementById('about-text');
+    const fullText = aboutText.textContent;
+    aboutText.textContent = '';
+    let idx = 0;
+    function typeWriter() {
+      if (idx < fullText.length) {
+        aboutText.textContent += fullText.charAt(idx);
+        idx++;
+        setTimeout(typeWriter, 30);
+      }
+    }
+    window.addEventListener('load', typeWriter);
+
+    // Services Card Effects
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+
+  </script>
 
 </body>
 </html>
